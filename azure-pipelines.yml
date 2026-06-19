@@ -12,5 +12,6 @@ testResultsFiles: '**/surefire-reports/TEST-*.xml'
 - task: PublishBuildArtifacts@1
 inputs:
 PathtoPublish: 'target'
+
 ArtifactName: 'drop'
 publishLocation: 'Container'

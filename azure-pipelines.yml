@@ -14,6 +14,7 @@ stages:
     steps:
 
     - task: Maven@4
+      displayName: 'Build Maven Project'
       inputs:
         mavenPomFile: 'pom.xml'
         goals: 'clean package'
@@ -21,6 +22,7 @@ stages:
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
 
     - task: PublishBuildArtifacts@1
+      displayName: 'Publish Build Artifacts'
       inputs:
         PathtoPublish: 'target'
         ArtifactName: 'drop'
@@ -41,13 +43,15 @@ stages:
       displayName: 'Deploy Application'
 
 - stage: Verification
-  displayName: Verification Stage
+  displayName: 'Verification Stage'
   dependsOn: Deploy
   jobs:
   - job: VerifyDeployment
+    displayName: 'Verify Deployment'
     steps:
+
     - script: |
-       echo "Checking deployment status"
-       echo "Application is running successfully"
-       echo "Pipeline execution completed"
-       displayName: Verify Deployment    
+        echo "Checking deployment status"
+        echo "Application is running successfully"
+        echo "Pipeline execution completed"
+      displayName: 'Verify Deployment'
